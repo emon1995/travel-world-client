@@ -39,7 +39,7 @@ const Navbar = () => {
     const navItems = <>
         <li><ActiveRoutes color={true} bg={true} to={`/`}>Home</ActiveRoutes></li>
         <li>
-            <ActiveRoutes color={true} bg={true} to={`/instructors`}>Instructors</ActiveRoutes>
+            <ActiveRoutes color={true} bg={true} to={`/create-group`}>Create Group</ActiveRoutes>
         </li>
         <li><ActiveRoutes color={true} bg={true} to={`/classes`}>Classes</ActiveRoutes></li>
 

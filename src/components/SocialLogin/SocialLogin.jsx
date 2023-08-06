@@ -19,24 +19,24 @@ const SocialLogin = () => {
                     role: "student",
                     admin: false
                 }
-                // fetch(`${import.meta.env.VITE_BASE_URL}/users`, {
-                //     method: 'POST',
-                //     headers: {
-                //         'content-type': 'application/json'
-                //     },
-                //     body: JSON.stringify(savedUser)
-                // })
-                //     .then(res => res.json())
-                //     .then(data => {
-                //         console.log(data);
-                //         Swal.fire(
-                //             'Success!',
-                //             'User login successfully',
-                //             'success'
-                //         )
-                //         navigate(from, { replace: true });
+                fetch(`${import.meta.env.VITE_BASE_URL}/users`, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(savedUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        Swal.fire(
+                            'Success!',
+                            'User login successfully',
+                            'success'
+                        )
+                        navigate(from, { replace: true });
 
-                //     })
+                    })
             })
     }
 

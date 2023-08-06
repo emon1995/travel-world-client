@@ -10,7 +10,7 @@ import {
     signInWithPopup
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
-// import axios from "axios";
+import axios from "axios";
 // import { getRole } from "../api/auth";
 // import useAxiosSecure from "../hooks/useAxiosSecure";
 
@@ -68,18 +68,18 @@ const AuthProvider = ({ children }) => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             // get and set token
-            // if (currentUser) {
-            //     axios.post(`${import.meta.env.VITE_BASE_URL}/jwt`, { email: currentUser?.email })
-            //         .then(data => {
-            //             // console.log(data);
-            //             localStorage.setItem("access-token", data.data.token);
-            //             setLoading(false);
+            if (currentUser) {
+                axios.post(`${import.meta.env.VITE_BASE_URL}/jwt`, { email: currentUser?.email })
+                    .then(data => {
+                        // console.log(data);
+                        localStorage.setItem("access-token", data.data.token);
+                        setLoading(false);
 
-            //         })
-            //         .catch(err => console.log(err));
-            // } else {
-            //     localStorage.removeItem("access-token");
-            // }
+                    })
+                    .catch(err => console.log(err));
+            } else {
+                localStorage.removeItem("access-token");
+            }
             setLoading(false);
         })
         return () => {

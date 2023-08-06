@@ -31,25 +31,25 @@ const SignUp = () => {
                 profileName(data.name, data.photoURL)
                     .then(() => {
                         const savedUser = { name: data.name, email: data.email, photoURL: data.photoURL, role: "student", admin: false, phone: data.phone };
-                        // fetch(`${import.meta.env.VITE_BASE_URL}/users`, {
-                        //     method: 'POST',
-                        //     headers: {
-                        //         'content-type': 'application/json'
-                        //     },
-                        //     body: JSON.stringify(savedUser)
-                        // })
-                        //     .then(res => res.json())
-                        //     .then(data => {
-                        //         if (data.insertedId) {
-                        //             reset();
-                        //             Swal.fire(
-                        //                 'Success!',
-                        //                 'User create successfully',
-                        //                 'success'
-                        //             )
-                        //             navigate(from, { replace: true });
-                        //         }
-                        //     })
+                        fetch(`${import.meta.env.VITE_BASE_URL}/users`, {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(savedUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    reset();
+                                    Swal.fire(
+                                        'Success!',
+                                        'User create successfully',
+                                        'success'
+                                    )
+                                    navigate(from, { replace: true });
+                                }
+                            })
                     })
             })
             .catch(err => {
