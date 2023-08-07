@@ -41,7 +41,7 @@ const Navbar = () => {
         <li>
             <ActiveRoutes color={true} bg={true} to={`/create-group`}>Create Group</ActiveRoutes>
         </li>
-        <li><ActiveRoutes color={true} bg={true} to={`/classes`}>Classes</ActiveRoutes></li>
+        <li><ActiveRoutes color={true} bg={true} to={`/groups`}>Groups</ActiveRoutes></li>
 
         {
             user?.email ? <>

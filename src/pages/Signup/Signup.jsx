@@ -30,7 +30,7 @@ const SignUp = () => {
                 console.log(result.user);
                 profileName(data.name, data.photoURL)
                     .then(() => {
-                        const savedUser = { name: data.name, email: data.email, photoURL: data.photoURL, role: "student", admin: false, phone: data.phone };
+                        const savedUser = { name: data.name, email: data.email, photoURL: data.photoURL, role: "member", admin: false, phone: data.phone };
                         fetch(`${import.meta.env.VITE_BASE_URL}/users`, {
                             method: 'POST',
                             headers: {

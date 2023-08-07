@@ -6,6 +6,7 @@ import Signup from "../pages/Signup/Signup";
 import CreateGroup from "../pages/CreateGroup/CreateGroup";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Groups from "../pages/Groups/Groups";
 
 
 
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
             {
                 path: "/create-group",
                 element: <PrivateRoute><CreateGroup /></PrivateRoute>
+            },
+            {
+                path: "/groups",
+                element: <PrivateRoute><Groups /></PrivateRoute>
             },
             {
                 path: "/login",
