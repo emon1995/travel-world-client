@@ -58,7 +58,7 @@ const ViewGroup = () => {
 
     return (
         <div>
-            <h1>{group.groupName}</h1>
+            <h1 className="text-center font-bold text-3xl">{group.groupName}</h1>
             <div >
                 {/* component */}
                 <section className="max-w-4xl p-6 mx-auto bg-[#283a5ae6] rounded-md shadow-md mt-20">

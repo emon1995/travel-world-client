@@ -28,7 +28,7 @@ const Groups = () => {
                 headers: {
                     'content-type': 'application/json'
                 },
-                body: JSON.stringify({ memberEmail: user.email, isJoin: true })
+                body: JSON.stringify({ email: user?.email, name: user?.displayName, img: user?.photoURL, isJoin: true })
             })
                 .then(res => res.json())
                 .then(data => {
@@ -60,7 +60,7 @@ const Groups = () => {
                 groups && Array.isArray(groups) && groups.length > 0 && groups.map((group, i) => <div key={group._id} className="flex items-center justify-center gap-3 h-20 p-4 rounded bg-primary text-primary-content mb-4">
                     <p>{i + 1}. {group?.groupName}</p>
                     {
-                        group?.membersEmail?.isJoin ? <Link to={`/view-group/${group?._id}`}><button className="btn btn-secondary">View</button></Link> : <button onClick={() => handleJoin(group._id)} className="btn btn-secondary">Join</button>
+                        group?.membersInfo.map(group => group.email).includes(user?.email) ? <Link to={`/view-group/${group?._id}`}><button className="btn btn-secondary">View</button></Link> : <button onClick={() => handleJoin(group._id)} className="btn btn-secondary">Join</button>
                     }
                 </div>)
             }
