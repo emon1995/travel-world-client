@@ -24,7 +24,7 @@ const CreateGroup = () => {
                 headers: {
                     'content-type': 'application/json'
                 },
-                body: JSON.stringify({ groupName: name })
+                body: JSON.stringify({ groupName: name, userEmail: user.email })
             })
                 .then(res => res.json())
                 .then(data => {
@@ -38,6 +38,9 @@ const CreateGroup = () => {
                         )
                         // navigate(from, { replace: true });
                     }
+                })
+                .catch(err => {
+                    toast.error(err.message);
                 })
         }
     }

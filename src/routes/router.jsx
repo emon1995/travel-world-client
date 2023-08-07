@@ -7,6 +7,8 @@ import CreateGroup from "../pages/CreateGroup/CreateGroup";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Groups from "../pages/Groups/Groups";
+import ViewGroup from "../pages/ViewGroup/ViewGroup";
+import SinglePost from "../pages/SinglePost/SinglePost";
 
 
 
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
             {
                 path: "/groups",
                 element: <PrivateRoute><Groups /></PrivateRoute>
+            },
+            {
+                path: "/view-group/:id",
+                element: <PrivateRoute><ViewGroup /></PrivateRoute>
+            },
+            {
+                path: "/single-post/:id",
+                element: <PrivateRoute><SinglePost /></PrivateRoute>
             },
             {
                 path: "/login",
