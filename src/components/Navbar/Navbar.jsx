@@ -45,7 +45,7 @@ const Navbar = () => {
 
         {
             user?.email ? <>
-                <li><ActiveRoutes color={true} bg={true} to={`/dashboard${role && role === "admin" && "/manage-classes" || role && role === "instructor" && "/add-classes" || role && role === "student" && "/my-selected-classes"} `}>Dashboard</ActiveRoutes></li>
+                <li><ActiveRoutes color={true} bg={true} to={`/dashboard${role && role === "admin" && "/manage-members" || role && role === "member" && "/manage-posts"} `}>Dashboard</ActiveRoutes></li>
                 <button onClick={handleLogout} className="btn bg-[#47B1E2] hover:text-black mr-2 text-white border-none shadow-2xl ml-2">Logout</button>
             </> : <li><ActiveRoutes color={true} bg={true} to={`/login`}>Login</ActiveRoutes></li>
         }

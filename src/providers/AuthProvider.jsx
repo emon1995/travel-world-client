@@ -11,7 +11,7 @@ import {
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import axios from "axios";
-// import { getRole } from "../api/auth";
+import { getRole } from "../api/auth";
 // import useAxiosSecure from "../hooks/useAxiosSecure";
 
 export const AuthContext = createContext(null);
@@ -26,14 +26,14 @@ const AuthProvider = ({ children }) => {
 
     const googleProvider = new GoogleAuthProvider();
 
-    // useEffect(() => {
-    //     if (user) {
-    //         getRole(user?.email).then(data => {
-    //             console.log(data);
-    //             setRole(data);
-    //         })
-    //     }
-    // }, [user]);
+    useEffect(() => {
+        if (user) {
+            getRole(user?.email).then(data => {
+                console.log(data);
+                setRole(data);
+            })
+        }
+    }, [user]);
 
     const registerUser = (email, password) => {
         setLoading(true);
