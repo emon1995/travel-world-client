@@ -16,7 +16,7 @@ const ManagePosts = () => {
         }
     })
 
-    console.log(posts);
+    // console.log(posts);
 
     const handleMakeStatus = async (item, status) => {
         console.log(item, status);
