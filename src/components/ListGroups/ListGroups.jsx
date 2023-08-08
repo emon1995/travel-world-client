@@ -1,18 +1,18 @@
 // import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import Spinner from "../Spinner/Spinner";
 
 
-const Groups = () => {
+const ListGroups = () => {
     const { user } = useAuth();
-    // const [groups, setGroups] = useState([]);
-    // const [isJoin, setIsJoin] = useState(false);
+    const navigate = useNavigate();
 
     // get all data
-    const { data: groups = [], refetch } = useQuery({
+    const { data: groups = [], isLoading, refetch } = useQuery({
         queryKey: ['groups'],
         queryFn: async () => {
             const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/groups`);
@@ -20,26 +20,30 @@ const Groups = () => {
         }
     })
 
-    console.log(groups);
+    // console.log(groups);
 
     // join button handle
     const handleJoin = id => {
-        if (id) {
-            fetch(`${import.meta.env.VITE_BASE_URL}/join-groups/${id}`, {
-                method: 'PATCH',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify({ email: user?.email, name: user?.displayName, img: user?.photoURL, isJoin: true })
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    refetch();
+        if (!user?.email) {
+            navigate("/login");
+        } else {
+            if (id) {
+                fetch(`${import.meta.env.VITE_BASE_URL}/join-groups/${id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: user?.email, name: user?.displayName, img: user?.photoURL, isJoin: true })
                 })
-                .catch(err => {
-                    toast.error(err.message);
-                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        refetch();
+                    })
+                    .catch(err => {
+                        toast.error(err.message);
+                    })
+            }
         }
     }
 
@@ -59,6 +63,9 @@ const Groups = () => {
     return (
         <div className="flex items-center justify-center flex-col mb-4">
             {
+                isLoading && <Spinner />
+            }
+            {
                 groups && Array.isArray(groups) && groups.length > 0 && groups.map((group, i) => <div key={group._id} className="flex items-center justify-center gap-3 h-20 p-4 rounded bg-primary text-primary-content mb-4">
                     <p>{i + 1}. {group?.groupName}</p>
                     {
@@ -70,4 +77,4 @@ const Groups = () => {
     );
 };
 
-export default Groups;
+export default ListGroups;

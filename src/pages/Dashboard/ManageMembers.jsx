@@ -18,7 +18,7 @@ const ManageMembers = () => {
     })
 
 
-    console.log(groups);
+    // console.log(groups);
 
     const handleUserDelete = async (id, groupId) => {
         console.log(id);
@@ -54,7 +54,7 @@ const ManageMembers = () => {
                             {/* row 1 */}
                             {
                                 groups.map((group) => (
-                                    group.membersInfo.map((user, i) => <tr key={user._id}>
+                                    group.membersInfo && group.membersInfo.map((user, i) => <tr key={user._id}>
                                         <th>
                                             {i + 1}
                                         </th>

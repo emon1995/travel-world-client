@@ -6,9 +6,10 @@ const MainLayout = () => {
     return (
         <div>
             <Navbar />
-            <div className="py-28">
+            <div className="py-28 min-h-[calc(100vh-200px)]">
                 <Outlet />
             </div>
+
         </div>
     );
 };

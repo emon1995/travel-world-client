@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import './App.css'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ListGroups from './components/ListGroups/ListGroups';
 
 function App() {
   const { data: posts = [] } = useQuery({
@@ -17,7 +18,7 @@ function App() {
     <>
       <div className="flex items-center justify-center flex-col mb-4 container mx-auto">
         {
-          posts && Array.isArray(posts) && posts.length > 0 && posts.map((post) => <div key={post._id} className="card lg:card-side w-full bg-base-100 shadow-xl">
+          posts && Array.isArray(posts) && posts.length > 0 && posts.map((post) => <div key={post._id} className="card lg:card-side w-full bg-base-100 shadow-xl mb-8">
             <figure><img className='object-cover' src={post?.postImage} alt="Album" /></figure>
             <div className="card-body">
               <h2 className="card-title">{post?.title}</h2>
@@ -28,6 +29,9 @@ function App() {
             </div>
           </div>)
         }
+        <div className="mt-28">
+          <ListGroups />
+        </div>
       </div>
     </>
   )
